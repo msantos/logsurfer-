@@ -12,6 +12,7 @@
 #endif
 
 #include <stdio.h>
+#include <stdlib.h>
 
 /* ugly, but portable */
 #if HAVE_STRING_H || STDC_HEADERS
