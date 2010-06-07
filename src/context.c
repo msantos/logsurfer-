@@ -520,12 +520,11 @@ do_context_action(this_context)
 			(void) fprintf(stderr, "out of memory preparing pipe cmd\n");
 			return;
 		}
-		if ((dummy_action->this_word=(char *)
-			malloc(strlen(this_context->match_regex_str)+1)) == NULL ) {
+		if ((dummy_action->this_word=
+			strdup(this_context->match_regex_str)) == NULL ) {
 			(void) fprintf(stderr, "out of memory preparing pipe cmd\n");
 			return;
 		}
-		(void) strcpy(dummy_action->this_word, this_context->match_regex_str);
 		dummy_action->next=NULL;
 		this_context->action_tokens->next=dummy_action;
 		expand_context_action_macros( this_context );
@@ -655,11 +654,10 @@ struct context  *this_context;{
 	    /*
 	     * malloc space for the new string, and replace the old on in the action list
 	     */
-	    if( (new_string = (char *)malloc(strlen(tempstr)+1)) == NULL){
+	    if( (new_string = strdup(tempstr)) == NULL){
 	      (void) fprintf(stderr,"malloc failed in expand_context_action_macros\n");
 	      return;
 	    }
-	    strcpy(new_string,tempstr);
 	    free( *cmd_string );
 	    *cmd_string = new_string;
 	  }

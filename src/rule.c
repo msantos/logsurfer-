@@ -339,12 +339,11 @@ parse_rule(input_line)
 			destroy_rule(new_rule);
 			return(NULL);
 		}
-		if ( (new_rule->action_body=(char *)malloc(strlen(help_ptr)+1)) == NULL ) {
+		if ( (new_rule->action_body=strdup(help_ptr)) == NULL ) {
 			(void) fprintf(stderr, "out of memory parsing rule\n");
 			destroy_rule(new_rule);
 			return(NULL);
 		}
-		(void) strcpy(new_rule->action_body, help_ptr);
 	}
 	else if (!strncasecmp(help_ptr, "pipe", 4)) {
 		new_rule->action_type=ACTION_PIPE;
@@ -355,12 +354,11 @@ parse_rule(input_line)
 			destroy_rule(new_rule);
 			return(NULL);
 		}
-		if ( (new_rule->action_body=(char *)malloc(strlen(help_ptr)+1)) == NULL ) {
+		if ( (new_rule->action_body=strdup(help_ptr)) == NULL ) {
 			(void) fprintf(stderr, "out of memory parsing rule\n");
 			destroy_rule(new_rule);
 			return(NULL);
 		}
-		(void) strcpy(new_rule->action_body, help_ptr);
 	}
 	else if (!strncasecmp(help_ptr, "open", 4)) {
 		new_rule->action_type=ACTION_OPEN;
@@ -371,12 +369,11 @@ parse_rule(input_line)
 			destroy_rule(new_rule);
 			return(NULL);
 		}
-		if ( (new_rule->action_body=(char *)malloc(strlen(help_ptr)+1)) == NULL ) {
+		if ( (new_rule->action_body=strdup(help_ptr)) == NULL ) {
 			(void) fprintf(stderr, "out of memory parsing rule\n");
 			destroy_rule(new_rule);
 			return(NULL);
 		}
-		(void) strcpy(new_rule->action_body, help_ptr);
 	}
 	else if (!strncasecmp(help_ptr, "delete", 6)) {
 		new_rule->action_type=ACTION_DELETE;
@@ -387,12 +384,11 @@ parse_rule(input_line)
 			destroy_rule(new_rule);
 			return(NULL);
 		}
-		if ( (new_rule->action_body=(char *)malloc(strlen(help_ptr)+1)) == NULL ) {
+		if ( (new_rule->action_body=strdup(help_ptr)) == NULL ) {
 			(void) fprintf(stderr, "out of memory parsing rule\n");
 			destroy_rule(new_rule);
 			return(NULL);
 		}
-		(void) strcpy(new_rule->action_body, help_ptr);
 	}
 	else if (!strncasecmp(help_ptr, "report", 6)) {
 		new_rule->action_type=ACTION_REPORT;
@@ -403,12 +399,11 @@ parse_rule(input_line)
 			destroy_rule(new_rule);
 			return(NULL);
 		}
-		if ( (new_rule->action_body=(char *)malloc(strlen(help_ptr)+1)) == NULL ) {
+		if ( (new_rule->action_body=strdup(help_ptr)) == NULL ) {
 			(void) fprintf(stderr, "out of memory parsing rule\n");
 			destroy_rule(new_rule);
 			return(NULL);
 		}
-		(void) strcpy(new_rule->action_body, help_ptr);
 	}
 	else if (!strncasecmp(help_ptr, "rule", 4)) {
 		new_rule->action_type=ACTION_RULE;
@@ -419,12 +414,11 @@ parse_rule(input_line)
 			destroy_rule(new_rule);
 			return(NULL);
 		}
-		if ( (new_rule->action_body=(char *)malloc(strlen(help_ptr)+1)) == NULL ) {
+		if ( (new_rule->action_body=strdup(help_ptr)) == NULL ) {
 			(void) fprintf(stderr, "out of memory parsing rule\n");
 			destroy_rule(new_rule);
 			return(NULL);
 		}
-		(void) strcpy(new_rule->action_body, help_ptr);
 	}
 	else if (!strncasecmp(help_ptr, "echo", 4)) {
 		new_rule->action_type=ACTION_ECHO;
@@ -435,12 +429,11 @@ parse_rule(input_line)
 			destroy_rule(new_rule);
 			return(NULL);
 		}
-		if ( (new_rule->action_body=(char *)malloc(strlen(help_ptr)+1)) == NULL ) {
+		if ( (new_rule->action_body=strdup(help_ptr)) == NULL ) {
 			(void) fprintf(stderr, "out of memory parsing rule\n");
 			destroy_rule(new_rule);
 			return(NULL);
 		}
-		(void) strcpy(new_rule->action_body, help_ptr);
 	}
 	else if (!strncasecmp(help_ptr, "syslog", 6)) {
 		new_rule->action_type=ACTION_SYSLOG;
@@ -451,12 +444,11 @@ parse_rule(input_line)
 			destroy_rule(new_rule);
 			return(NULL);
 		}
-		if ( (new_rule->action_body=(char *)malloc(strlen(help_ptr)+1)) == NULL ) {
+		if ( (new_rule->action_body=strdup(help_ptr)) == NULL ) {
 			(void) fprintf(stderr, "out of memory parsing rule\n");
 			destroy_rule(new_rule);
 			return(NULL);
 		}
-		(void) strcpy(new_rule->action_body, help_ptr);
 	}
 	else {
 		(void) fprintf(stderr, "unknown action in rule: %s\n", input_line);

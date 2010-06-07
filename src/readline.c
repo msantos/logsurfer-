@@ -107,13 +107,12 @@ readline(infile, buffer, buffer_size, buffer_pos)
 		(void) printf("still in buffer: %s\n", *buffer);
 #endif
 		*help_ptr++='\0';
-		if ( (result=(char *) malloc(strlen(*buffer)+1)) == NULL ) {
+		if ( (result=strdup(*buffer)) == NULL ) {
 			(void) fprintf(stderr, "out of memory reading input!\n");
 			/* what should we do here??? */
 			/* for now we return the EOF condition... */
 			return(NULL);
 		}
-		(void) strcpy(result, *buffer);
 		(void) memmove(*buffer, help_ptr, strlen(help_ptr)+1);
 		*buffer_pos-=strlen(result)+1;
 
@@ -140,13 +139,12 @@ readline(infile, buffer, buffer_size, buffer_pos)
 	/* do we have a complete line (terminated by a \n)? */
 	if ( (help_ptr=strchr(*buffer, '\n')) != NULL ) {
 		*help_ptr++='\0';
-		if ( (result=(char *) malloc(strlen(*buffer)+1)) == NULL ) {
+		if ( (result=strdup(*buffer)) == NULL ) {
 			(void) fprintf(stderr, "out of memory reading input!\n");
 			/* what should we do here??? */
 			/* for now we return the EOF condition... */
 			return(NULL);
 		}
-		(void) strcpy(result, *buffer);
 		(void) memmove(*buffer, help_ptr, strlen(help_ptr)+1);
 		*buffer_pos-=strlen(result)+1;
 

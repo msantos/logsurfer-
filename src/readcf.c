@@ -126,11 +126,10 @@ read_config(filename)
 		/* did we read in an incomplete line at the end of file? */
 		if ( input_line == NULL ) {
 			/* so there must be some unprocessed stuff in the buffer */
-			if ( (input_line=(char *) malloc(strlen(buffer)+1)) == NULL ) {
+			if ( (input_line=strdup(buffer) == NULL )) {
 				(void) fprintf(stderr, "memory problems reading configfile\n");
 				return(1);
 			}
-			(void) strcpy(input_line, buffer);
 			buf_pos=0;
 		}
 		/* we got a new line from the config-file */

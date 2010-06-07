@@ -173,7 +173,7 @@ process_logline()
 			logline);
 		return;
 	}
-	if ( (logline_context->content=(char *)malloc(strlen(logline)+1)) == NULL ) {
+	if ( (logline_context->content=strdup(logline)) == NULL ) {
 		(void) fprintf(stderr, "out of memory processing logling: %s\n",
 			logline);
 		(void) free(logline_context);
@@ -181,7 +181,6 @@ process_logline()
 	}
 	logline_context->linenumber=logline_num;
 	logline_context->timestamp=(long) current_time;
-	(void) strcpy(logline_context->content, logline);
 	logline_context->link_counter=1;
 
 	/*

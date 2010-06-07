@@ -244,11 +244,10 @@ get_word(input_line)
 		break;
 	}
 	*dst='\0';
-	if ( (result=(char *)malloc(strlen(word_buffer)+1)) == NULL ) {
+	if ( (result=strdup(word_buffer)) == NULL ) {
 		(void) free(word_buffer);
 		return NULL;
 	}
-	(void) strcpy(result, word_buffer);
 	(void) free(word_buffer);
 	*input_line=src;
 	return(result);
