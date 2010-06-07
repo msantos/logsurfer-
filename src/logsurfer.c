@@ -387,7 +387,7 @@ main(argc, argv)
 	 */
 	logline_buffer_size=4096;
 	logline_buffer_pos=0;
-	if ( (logline_buffer=(char *)malloc(logline_buffer_size)) == NULL ) {
+	if ( (logline_buffer=(char *)calloc(logline_buffer_size, 1)) == NULL ) {
 		(void) fprintf(stderr, "unable to allocate memory for logline_buffer\n");
 		exit(99);
 	}
