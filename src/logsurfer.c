@@ -394,7 +394,7 @@ main(argc, argv)
 		progname++;
 
 	/* setup some defaults and initialize the global pointers */
-	(void) strcpy(logfile_name, "");
+    (void) memset(logfile_name, 0, sizeof(logfile_name));
 	(void) strcpy(cf_filename, CONFFILE);
 	(void) strcpy(dumpfile_name, DUMPFILE);
 	all_rules=NULL;
@@ -476,10 +476,16 @@ main(argc, argv)
             break;
 		case 'c':
 			/* specify another config file */
+            if (strlen(optarg) >= MAXPATHLEN - 1) {
+                usage(progname);
+            }
 			(void) strcpy(cf_filename, optarg);
 			break;
 		case 'd':
 			/* specify another dump file */
+            if (strlen(optarg) >= MAXPATHLEN - 1) {
+                usage(progname);
+            }
 			(void) strcpy(dumpfile_name, optarg);
 			break;
 		case 'D':
@@ -565,6 +571,9 @@ main(argc, argv)
 		logfile=stdin;
     }
 	else {
+        if (strlen(argv[0]) >= MAXPATHLEN - 1) {
+            exit(6);
+        }
 		if ( (logfile=fopen(strcpy(logfile_name, argv[0]), "r")) == NULL ) {
 			(void) fprintf(stderr, "error opening logfile %s\n",
 				logfile_name);
