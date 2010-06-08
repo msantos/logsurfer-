@@ -22,6 +22,8 @@ DEF_DUMPFILE = /dev/null
 #    to use the ugly sendmail hack (see README)
 #   -DWARN_ROOT
 #    print a warning if the program is started as root (see README)
+#   -D_FILE_OFFSET_BITS=64
+#    support large files
 CPPFLAGS = -DWARN_ROOT
 
 # Which C-Compiler?
