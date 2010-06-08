@@ -287,6 +287,7 @@ logfile_reopen(sig)
 /*
  * Fork and run in the background
  */
+#ifndef HAVE_DAEMON
 int
 runasdaemon(lfd)
     int lfd;
@@ -344,6 +345,7 @@ runasdaemon(lfd)
             (void) close(fd);
     }
 }
+#endif
 
 /*
  * print usage information and exit
@@ -591,7 +593,11 @@ main(argc, argv)
 	}
 
     if ( daemonize )
+#ifdef HAVE_DAEMON
+        daemon(0,0);
+#else
         runasdaemon(fileno(logfile));
+#endif 
 
 	if ( start_line != 0 ) {
 		logline_num=start_line-1;

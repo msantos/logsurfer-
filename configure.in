@@ -26,7 +26,7 @@ AC_C_CONST
 
 dnl Checks for library functions.
 AC_FUNC_ALLOCA
-AC_CHECK_FUNCS(strchr index memmove bcopy)
+AC_CHECK_FUNCS(strchr index memmove bcopy daemon)
 
 dnl Check for --with-etcdir.
 AC_MSG_CHECKING(etcdir)
